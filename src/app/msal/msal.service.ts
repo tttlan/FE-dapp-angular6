@@ -1,5 +1,4 @@
-import { Component, Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Injectable } from '@angular/core';
 
 import * as Msal from 'msal';
 
