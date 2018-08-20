@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { MsalService } from './msal/msal.service';
 import { MsalGuard } from './msal/msal.guard';
 import { AuthService } from './services/auth.service';
+import { GenericService } from './services/generic.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AuthService } from './services/auth.service';
   providers: [
     MsalGuard,
     MsalService,
-    AuthService
+    AuthService,
+    GenericService
   ],
   bootstrap: [AppComponent]
 })
