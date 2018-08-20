@@ -18,9 +18,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this._msal.isOnline()) {
-      this._router.navigate(['/home']);
+      this._router.navigate(['/login']);
     } else {
-      // this._router.navigate(['/login']);
       this._msal.login();
     }
   }

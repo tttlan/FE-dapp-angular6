@@ -8,5 +8,7 @@ export const environment = {
   clientID: 'edac9377-2342-49e5-ae0e-3472e0dc7bb9',
   graphScopes: ["openid", "profile"],
   signUpSignInPolicy: '',
-  tenant: 'f4693bfd-2fe6-475f-a59f-aa2ce4e9eb94'
+  tenant: 'f4693bfd-2fe6-475f-a59f-aa2ce4e9eb94',
+
+  serviceUrl: 'http://localhost:9000/api/'
 };

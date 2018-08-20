@@ -14,7 +14,6 @@ export class MsalService {
 
     private app: any;
     public user;
-    public isAuthenticated = false;
     private _router: Router;
 
     constructor() {
@@ -30,7 +29,7 @@ export class MsalService {
             }
         );
 
-        this.app.popup = CONFIG.POP_UP;
+        // this.app.popup = CONFIG.POP_UP;
     }
 
     public callback(errorDesc, token, error, tokenType) {
@@ -39,7 +38,6 @@ export class MsalService {
             console.log(JSON.stringify(error));
             return;
         }
-        console.log('Callback for login');
         this.access_token = token;
     }
 
@@ -74,9 +72,8 @@ export class MsalService {
         this.app.acquireTokenSilent(CONFIG.SCOPES).then(
             accessToken => {
                 this.access_token = accessToken;
-                console.log('ACCESS TOKEN: \n ' + this.access_token);
-                this.user = this.app.getUser(); // AZURE AD
-                this.isAuthenticated = true;
+
+                this.user = this.app.getUser();
 
                 this.goToLoginPage();
             },

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MsalService } from '../msal/msal.service';
+
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-toolbar',
@@ -7,21 +8,15 @@ import { MsalService } from '../msal/msal.service';
     styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-    constructor(private msal: MsalService) {
-        
+    private _auth: AuthService;
+
+    constructor(private auth: AuthService) {
+        this._auth = auth;
     }
 
     ngOnInit() {}
 
     get authenticated() {
-        return this.msal.isAuthenticated;
-    }
-
-    login() {
-        this.msal.login();
-    }
-
-    logout() {
-        this.msal.logout();
+        return this._auth.isAuthenticated;
     }
 }
