@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { HttpHelper } from "../../utils/httpHelper";
-import { METHOD } from "../../utils/constants";
 
 export interface RequestObject {
 
@@ -11,7 +9,6 @@ export interface RequestObject {
 @Injectable()
 export class BaseService {
     private _http: HttpClient;
-    public _httpHelper: HttpHelper;
     public _serviceUrl: string;
 
     constructor(http: HttpClient) {
@@ -19,45 +16,47 @@ export class BaseService {
         this._serviceUrl = environment.serviceUrl;
     }
 
-    makeCall(req: RequestObject, successCallback, errorCallback): Promise<any> {
-        return;
-    }
-
     get(url, successCallback, errorCallback) {
-        let req = {
-            url: url,
-            method: METHOD.get
-        };
+        try {
+            let result = this._http.get(url).toPromise();
 
-        this.makeCall(req, successCallback, errorCallback);
+            return result.then(successCallback, errorCallback);
+        }
+        catch (error) {
+            throw new Error(error);
+        }
     }
 
     post(url, data, successCallback, errorCallback) {
-        let req = {
-            url: url,
-            data: data,
-            method: METHOD.post
-        };
+        try {
+            let result = this._http.post(url, data).toPromise();
 
-        this.makeCall(req, successCallback, errorCallback);
+            return result.then(successCallback, errorCallback);
+        }
+        catch (error) {
+            throw new Error(error);
+        }
     }
 
     put(url, data, successCallback, errorCallback) {
-        let req = {
-            url: url,
-            data: data,
-            method: METHOD.put
-        };
+        try {
+            let result = this._http.put(url, data).toPromise();
 
-        this.makeCall(req, successCallback, errorCallback);
+            return result.then(successCallback, errorCallback);
+        }
+        catch (error) {
+            throw new Error(error);
+        }
     }
 
     delete(url, successCallback, errorCallback) {
-        let req = {
-            url: url,
-            method: METHOD.delete
-        };
+        try {
+            let result = this._http.delete(url).toPromise();
 
-        this.makeCall(req, successCallback, errorCallback);
+            return result.then(successCallback, errorCallback);
+        }
+        catch (error) {
+            throw new Error(error);
+        }
     }
 }

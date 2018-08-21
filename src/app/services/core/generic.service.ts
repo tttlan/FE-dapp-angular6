@@ -2,11 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { BaseService } from "./base.service";
+import { HttpHelper } from "../../utils/httpHelper";
 
 @Injectable()
 export class GenericService extends BaseService {
-
-    constructor(private http: HttpClient) {
+    private _httpHelper: HttpHelper
+    constructor(http: HttpClient) {
         super(http);
 
         this._serviceUrl = this._serviceUrl;
