@@ -7,24 +7,20 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 
-import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { LoginComponent } from './login/login.component';
-
-import { MsalService } from './msal/msal.service';
-import { MsalGuard } from './msal/msal.guard';
 import { AuthService } from './services/auth.service';
-import { GenericService } from './services/generic.service';
+import { GenericService } from './services/core/generic.service';
+
+
+import { MsalGuard } from './services/msal/msal.guard';
+import { MsalService } from './services/msal/msal.service';
+
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
-    HomeComponent,
-    NotFoundComponent,
-    LoginComponent
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,

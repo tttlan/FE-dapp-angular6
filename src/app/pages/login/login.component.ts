@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { MsalService } from '../msal/msal.service';
+import { MsalService } from '../../services/msal/msal.service';
 
 @Component({
   selector: 'app-login',
