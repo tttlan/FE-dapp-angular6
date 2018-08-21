@@ -18,6 +18,7 @@ import { AuthGuard } from './services/auth/auth.guard';
 
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MsalInterceptor } from './services/msal/msal.interceptor';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,11 @@ import { MsalInterceptor } from './services/msal/msal.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true
     }
   ],
