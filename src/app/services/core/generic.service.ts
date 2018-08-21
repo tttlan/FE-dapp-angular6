@@ -13,23 +13,32 @@ export class GenericService extends BaseService {
     }
 
     getAll(successCallback, errorCallback) {
-
+        this.get(this._serviceUrl, (response) => {
+            let data = this.formatItemsResponse(response);
+            successCallback(data);
+        }, errorCallback);
     }
 
     getById(id: number, successCallback, errorCallback) {
+        let url = this._serviceUrl + '/' + id;
 
-    }
-
-    getByIds(ids: number[], successCallback, errorCallback) {
-
+        this.get(url, (response) => {
+            let data = this.formatItemResponse(response);
+            successCallback(data);
+        }, errorCallback);
     }
 
     query(objParam, successCallback, errorCallback) {
-        
+
     }
 
-    create(url, data: any, successCallback, errorCallback) {
+    create(data: any, successCallback, errorCallback) {
+        let reqData = this.formatDataRequest(data);
 
+        this.post(this._serviceUrl, reqData, (response) => {
+            let data = this.formatDataResponse(response);
+            successCallback(data);
+        }, errorCallback);
     }
 
     updateByPost(id: number, data: any, successCallback, errorCallback) {
@@ -45,7 +54,9 @@ export class GenericService extends BaseService {
     }
 
     deleteByIds(ids: number[], successCallback, errorCallback) {
+        let url = this._serviceUrl + '/' + this._httpHelper.convertArrayToString(ids);
 
+        this.delete(url, successCallback, errorCallback);
     }
 
     formatDataRequest(data: any) {
@@ -53,6 +64,14 @@ export class GenericService extends BaseService {
     }
 
     formatDataResponse(data: any) {
+        return data;
+    }
+
+    formatItemsResponse(data: any) {
+        return data;
+    }
+
+    formatItemResponse(data: any) {
         return data;
     }
 }

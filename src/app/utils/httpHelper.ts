@@ -18,4 +18,12 @@ export class HttpHelper {
 
         return query;
     };
+
+    convertArrayToString(data: number[]) {
+        if(data.length > 0) {
+            return data.toString();
+        }
+
+        return null;
+    }
 }
