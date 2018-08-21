@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
 export class HttpHelper {
-    buildParams(qrs, removePrefix) {
+    buildParams(qrs, removePrefix: boolean = false) {
         var query = '',
             beginningPrefix = removePrefix ? '' : '?';
 

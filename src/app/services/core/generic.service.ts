@@ -13,7 +13,9 @@ export class GenericService extends BaseService {
     }
 
     getAll(successCallback, errorCallback) {
-        this.get(this._serviceUrl, (response) => {
+        let url = this._serviceUrl;
+
+        this.get(url, (response) => {
             let data = this.formatItemsResponse(response);
             successCallback(data);
         }, errorCallback);
@@ -29,28 +31,47 @@ export class GenericService extends BaseService {
     }
 
     query(objParam, successCallback, errorCallback) {
+        let url = this._serviceUrl + this._httpHelper.buildParams(objParam);
 
+        this.get(url, (response) => {
+            let data = this.formatItemsResponse(response);
+            successCallback(data);
+        }, errorCallback);
     }
 
-    create(data: any, successCallback, errorCallback) {
+    create(url, data: any, successCallback, errorCallback) {
         let reqData = this.formatDataRequest(data);
 
-        this.post(this._serviceUrl, reqData, (response) => {
+        this.post(url, reqData, (response) => {
             let data = this.formatDataResponse(response);
             successCallback(data);
         }, errorCallback);
     }
 
     updateByPost(id: number, data: any, successCallback, errorCallback) {
+        let url = this._serviceUrl + '/' + id;
+        let reqData = this.formatDataRequest(data);
 
+        this.post(url, reqData, (response) => {
+            let data = this.formatDataResponse(response);
+            successCallback(data);
+        }, errorCallback);
     }
 
     updateByPut(id: number, data: any, successCallback, errorCallback) {
+        let url = this._serviceUrl + '/' + id;
+        let reqData = this.formatDataRequest(data);
 
+        this.put(url, reqData, (response) => {
+            let data = this.formatDataResponse(response);
+            successCallback(data);
+        }, errorCallback);
     }
 
     deleteById(id: number, successCallback, errorCallback) {
+        let url = this._serviceUrl + '/' + id;
 
+        this.delete(url, successCallback, errorCallback);
     }
 
     deleteByIds(ids: number[], successCallback, errorCallback) {
