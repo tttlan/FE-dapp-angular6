@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { GenericService } from "../core/generic.service";
 
-export class Auth {
+export interface Auth {
     userName: string;
     password: string;
 };

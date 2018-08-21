@@ -25,7 +25,7 @@ export class GenericService extends BaseService {
     }
 
     query(objParam, successCallback, errorCallback) {
-
+        
     }
 
     create(url, data: any, successCallback, errorCallback) {
