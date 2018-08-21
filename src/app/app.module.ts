@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,7 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/auth/auth.guard';
 
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { MsalInterceptor } from './services/msal/msal.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,12 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     BaseService,
     GenericService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
