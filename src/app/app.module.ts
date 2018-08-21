@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service';
 import { GenericService } from './services/core/generic.service';
 
 

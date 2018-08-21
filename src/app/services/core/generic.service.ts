@@ -29,11 +29,11 @@ export class GenericService extends BaseService {
 
     }
 
-    updateByPost(data, successCallback, errorCallback) {
+    updateByPost(id: number, data: any, successCallback, errorCallback) {
 
     }
 
-    updateByPut(data, successCallback, errorCallback) {
+    updateByPut(id: number, data: any, successCallback, errorCallback) {
 
     }
 
