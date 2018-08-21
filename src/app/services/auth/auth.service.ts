@@ -25,14 +25,14 @@ export class AuthService extends GenericService {
     }
 
     loginSuccess(data: any) {
-
+        console.log(data);
     }
 
     loginError(data: any) {
-
+        console.log(data);
     }
 
     logout() {
-        
+
     }
 }
