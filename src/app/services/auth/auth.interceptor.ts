@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { AuthService } from "./auth.service";
-import { LocalStorageHelper } from "../../utils/local-storage";
+import { LocalStorageHelper } from "../../utils/localStorageHelper";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

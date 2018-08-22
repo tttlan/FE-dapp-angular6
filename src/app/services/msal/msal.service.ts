@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
 
 import { CONFIG_MSAL } from './msal.config';
-import { Router } from '@angular/router';
+import { LocalStorageHelper } from '../../utils/localStorageHelper';
 
 const CONFIG = CONFIG_MSAL.Settings;
 
@@ -13,7 +13,7 @@ export class MsalService {
 
     private app: any;
     public user;
-    private _router: Router;
+    private _storage: LocalStorageHelper;
 
     constructor() {
         this.app = new Msal.UserAgentApplication(
@@ -71,10 +71,7 @@ export class MsalService {
         this.app.acquireTokenSilent(CONFIG.SCOPES).then(
             accessToken => {
                 this.access_token = accessToken;
-
                 this.user = this.app.getUser();
-
-                this.goToLoginPage();
             },
             error => {
                 this.app.acquireTokenPopup(CONFIG.SCOPES).then(accessToken => {
@@ -109,9 +106,5 @@ export class MsalService {
                         console.error(err);
                     });
             });
-    }
-
-    public goToLoginPage() {
-        this._router.navigate(['/login']);
     }
 }

@@ -14,44 +14,40 @@ export class BaseService {
 
     get(url, successCallback, errorCallback) {
         try {
-            let result = this._http.get(url).toPromise();
+            const result = this._http.get(url).toPromise();
 
             return result.then(successCallback, errorCallback);
-        }
-        catch (error) {
+        } catch (error) {
             throw new Error(error);
         }
     }
 
     post(url, data, successCallback, errorCallback) {
         try {
-            let result = this._http.post(url, data).toPromise();
+            const result = this._http.post(url, data).toPromise();
 
             return result.then(successCallback, errorCallback);
-        }
-        catch (error) {
+        } catch (error) {
             throw new Error(error);
         }
     }
 
     put(url, data, successCallback, errorCallback) {
         try {
-            let result = this._http.put(url, data).toPromise();
+            const result = this._http.put(url, data).toPromise();
 
             return result.then(successCallback, errorCallback);
-        }
-        catch (error) {
+        } catch (error) {
             throw new Error(error);
         }
     }
 
     delete(url, successCallback, errorCallback) {
         try {
-            let result = this._http.delete(url).toPromise();
+            const result = this._http.delete(url).toPromise();
 
             return result.then(successCallback, errorCallback);
-        }
-        catch (error) {
+        } catch (error) {
             throw new Error(error);
         }
     }

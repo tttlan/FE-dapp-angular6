@@ -6,7 +6,8 @@ import { HttpHelper } from "../../utils/httpHelper";
 
 @Injectable()
 export class GenericService extends BaseService {
-    private _httpHelper: HttpHelper
+    private _httpHelper: HttpHelper;
+
     constructor(http: HttpClient) {
         super(http);
 
@@ -14,69 +15,69 @@ export class GenericService extends BaseService {
     }
 
     getAll(successCallback, errorCallback) {
-        let url = this._serviceUrl;
+        const url = this._serviceUrl;
 
         this.get(url, (response) => {
-            let data = this.formatItemsResponse(response);
-            successCallback(data);
+            const res = this.formatItemsResponse(response);
+            successCallback(res);
         }, errorCallback);
     }
 
     getById(id: number, successCallback, errorCallback) {
-        let url = this._serviceUrl + '/' + id;
+        const url = this._serviceUrl + '/' + id;
 
         this.get(url, (response) => {
-            let data = this.formatItemResponse(response);
-            successCallback(data);
+            const res = this.formatItemResponse(response);
+            successCallback(res);
         }, errorCallback);
     }
 
     query(objParam, successCallback, errorCallback) {
-        let url = this._serviceUrl + this._httpHelper.buildParams(objParam);
+        const url = this._serviceUrl + this._httpHelper.buildParams(objParam);
 
         this.get(url, (response) => {
-            let data = this.formatItemsResponse(response);
-            successCallback(data);
+            const res = this.formatItemsResponse(response);
+            successCallback(res);
         }, errorCallback);
     }
 
     create(url, data: any, successCallback, errorCallback) {
-        let reqData = this.formatDataRequest(data);
+        const reqData = this.formatDataRequest(data);
 
         this.post(url, reqData, (response) => {
-            let data = this.formatDataResponse(response);
-            successCallback(data);
+            const res = this.formatDataResponse(response);
+            successCallback(res);
         }, errorCallback);
     }
 
     updateByPost(id: number, data: any, successCallback, errorCallback) {
-        let url = this._serviceUrl + '/' + id;
-        let reqData = this.formatDataRequest(data);
+        const url = this._serviceUrl + '/' + id;
+        const reqData = this.formatDataRequest(data);
 
         this.post(url, reqData, (response) => {
-            let data = this.formatDataResponse(response);
-            successCallback(data);
+            const res = this.formatDataResponse(response);
+            successCallback(res);
         }, errorCallback);
     }
 
     updateByPut(id: number, data: any, successCallback, errorCallback) {
-        let url = this._serviceUrl + '/' + id;
-        let reqData = this.formatDataRequest(data);
+        const url = this._serviceUrl + '/' + id;
+        const reqData = this.formatDataRequest(data);
 
         this.put(url, reqData, (response) => {
-            let data = this.formatDataResponse(response);
-            successCallback(data);
+            const res = this.formatDataResponse(response);
+            successCallback(res);
         }, errorCallback);
     }
 
     deleteById(id: number, successCallback, errorCallback) {
-        let url = this._serviceUrl + '/' + id;
+        const url = this._serviceUrl + '/' + id;
 
         this.delete(url, successCallback, errorCallback);
     }
 
     deleteByIds(ids: number[], successCallback, errorCallback) {
-        let url = this._serviceUrl + '/' + this._httpHelper.convertArrayToString(ids);
+        const url = this._serviceUrl + '/' + this._httpHelper.convertArrayToString(ids);
 
         this.delete(url, successCallback, errorCallback);
     }

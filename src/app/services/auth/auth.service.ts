@@ -5,7 +5,7 @@ import { GenericService } from "../core/generic.service";
 export interface Auth {
     userName: string;
     password: string;
-};
+}
 
 @Injectable()
 export class AuthService extends GenericService {
@@ -19,7 +19,7 @@ export class AuthService extends GenericService {
     }
 
     login(auth: Auth) {
-        let serviceUrlLogin = this._serviceUrl + '/login';
+        const serviceUrlLogin = this._serviceUrl + '/login';
 
         this.create(serviceUrlLogin, auth, this.loginSuccess, this.loginError);
     }
