@@ -10,12 +10,13 @@ export interface Auth {
 @Injectable()
 export class AuthService extends GenericService {
     public hash_token: string = null;
-    public isAuthenticated: boolean = false;
+    public isAuthenticated: boolean;
 
     constructor(http: HttpClient) {
         super(http);
 
-        this._serviceUrl = this._serviceUrl + '/auth';
+        this.isAuthenticated = false;
+        this._serviceUrl = this._serviceUrl + 'auth';
     }
 
     login(auth: Auth) {
