@@ -6,9 +6,10 @@ import * as _ from 'lodash';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from './app.component';
+
 import { MaterialModule } from './material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { MsalGuard } from './services/msal/msal.guard';
 import { MsalService } from './services/msal/msal.service';
@@ -17,6 +18,7 @@ import { GenericService } from './services/core/generic.service';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/auth/auth.guard';
 
+import { AppComponent } from './app.component';
 import { COMPONENTS } from './components/index';
 
 import { MsalInterceptor } from './services/msal/msal.interceptor';
@@ -30,7 +32,8 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     HttpClientModule,
     AppRoutingModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxSpinnerModule
   ],
   providers: [
     MsalGuard,
