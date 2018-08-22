@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { CanActivate, Router } from "@angular/router";
+import { CanActivate } from "@angular/router";
 import { MsalService } from "./msal.service";
 import { AuthService } from "../auth/auth.service";
 

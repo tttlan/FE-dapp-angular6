@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import * as _ from 'lodash';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,15 +17,13 @@ import { GenericService } from './services/core/generic.service';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/auth/auth.guard';
 
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { COMPONENTS } from './components/index';
+
 import { MsalInterceptor } from './services/msal/msal.interceptor';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ToolbarComponent
-  ],
+  declarations: _.concat(COMPONENTS, AppComponent),
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
