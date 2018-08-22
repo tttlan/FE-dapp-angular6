@@ -8,6 +8,11 @@ const router: Routes = [
         path: 'login',
         component: LoginComponent,
         canActivate: [MsalGuard]
+    },
+    {
+        path: '',
+        component: LoginComponent,
+        canActivate: [MsalGuard]
     }
 ];
 
