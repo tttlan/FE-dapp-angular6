@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
 
 import { CONFIG_MSAL } from './msal.config';
-import { LocalStorageHelper } from '../../utils/localStorageHelper';
 
 const CONFIG = CONFIG_MSAL.Settings;
 
@@ -13,7 +12,6 @@ export class MsalService {
 
     private app: any;
     public user;
-    private _storage: LocalStorageHelper;
 
     constructor() {
         this.app = new Msal.UserAgentApplication(
