@@ -3,18 +3,19 @@ import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
 
 import { CONFIG_MSAL } from './msal.config';
+import { LocalStorageHelper } from '../../utils/localStorageHelper';
 
 const CONFIG = CONFIG_MSAL.Settings;
 
 @Injectable()
 export class MsalService {
+    private _storage: any = new LocalStorageHelper();
+    private _app: any;
+    public user;
     public access_token = null;
 
-    private app: any;
-    public user;
-
     constructor() {
-        this.app = new Msal.UserAgentApplication(
+        this._app = new Msal.UserAgentApplication(
             CONFIG.CLIENT_ID,
             CONFIG.AUTHORITY,
             this.callback,
@@ -26,7 +27,7 @@ export class MsalService {
             }
         );
 
-        // this.app.popup = CONFIG.POP_UP;
+        // this._app.popup = CONFIG.POP_UP;
     }
 
     public callback(errorDesc, token, error, tokenType) {
@@ -39,12 +40,12 @@ export class MsalService {
     }
 
     public login() {
-        // this.app.popup ? this.loginPopUp() : 
+        // this._app.popup ? this.loginPopUp() : 
         this.loginRedirect();
     }
 
     public loginRedirect() {
-        return this.app.loginRedirect(CONFIG.SCOPES).then(
+        return this._app.loginRedirect(CONFIG.SCOPES).then(
             idToken => {
                 this.acquireToken();
             },
@@ -55,7 +56,7 @@ export class MsalService {
     }
 
     public loginPopUp() {
-        return this.app.loginPopup(CONFIG.SCOPES).then(
+        return this._app.loginPopup(CONFIG.SCOPES).then(
             idToken => {
                 this.acquireToken();
             },
@@ -66,13 +67,13 @@ export class MsalService {
     }
 
     public acquireToken() {
-        this.app.acquireTokenSilent(CONFIG.SCOPES).then(
+        this._app.acquireTokenSilent(CONFIG.SCOPES).then(
             accessToken => {
                 this.access_token = accessToken;
-                this.user = this.app.getUser();
+                this.user = this._app.getUser();
             },
             error => {
-                this.app.acquireTokenPopup(CONFIG.SCOPES).then(accessToken => {
+                this._app.acquireTokenPopup(CONFIG.SCOPES).then(accessToken => {
                     console.log('Error acquiring the popup:\n' + error);
                 });
             }
@@ -80,29 +81,19 @@ export class MsalService {
     }
 
     public logout() {
-        this.app.logout();
+        this._app.logout();
     }
 
     public isOnline(): boolean {
-        return this.app.getUser() != null;
+        return this._app.getUser() != null;
     }
 
     public getCurrentLogin() {
-        const user = this.app.getUser();
+        const user = this._app.getUser();
         return user;
     }
 
     public getToken() {
-        return this.app.acquireTokenSilent(CONFIG.SCOPES).then(accessToken => {
-            return accessToken;
-        },
-            error => {
-                return this.app.acquireTokenSilent(CONFIG.SCOPES).then(accessToken => {
-                    return accessToken;
-                },
-                    err => {
-                        console.error(err);
-                    });
-            });
+        return this._storage.getValue('msal.idtoken');
     }
 }

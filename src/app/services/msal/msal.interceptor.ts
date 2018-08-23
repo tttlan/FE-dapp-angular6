@@ -10,16 +10,15 @@ export class MsalInterceptor implements HttpInterceptor {
     constructor(private msal: MsalService, private auth: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (this.msal.isOnline() && !this.auth.isAuthenticated) {
-            this.msal.getToken().then(token => {
-                req = req.clone({
-                    setHeaders: {
-                        LOGIN_TOKEN: `Bearer ${token}`
-                    }
-                });
+        if (this.auth.isOnline && this.auth.isAuthenticated === false) {
+            const token = this.msal.getToken();
+            const newReq = req.clone({
+                setHeaders: {
+                    'LOGIN_TOKEN': `Bearer ${token}`
+                }
             });
 
-            return next.handle(req);
+            return next.handle(newReq);
         }
 
         return next.handle(req);

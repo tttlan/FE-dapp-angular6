@@ -4,7 +4,7 @@ export class LocalStorageHelper {
     }
 
     getValue(key: string) {
-        localStorage.getItem(key);
+        return localStorage.getItem(key);
     }
 
     deleteValue(key: string) {

@@ -9,7 +9,7 @@ export class MsalGuard implements CanActivate {
     constructor(private msal: MsalService, private auth: AuthService) { }
 
     canActivate() {
-        if (this.msal.isOnline() && this.auth.isAuthenticated === false) {
+        if (this.auth.isOnline && this.auth.isAuthenticated === false) {
             return true;
         } else {
             this.msal.login();

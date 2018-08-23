@@ -15,13 +15,13 @@ export class AuthInterceptor implements HttpInterceptor {
         if (this.auth.isAuthenticated) {
             const token = this._storage.getValue('auth_token');
 
-            req = req.clone({
+            const newReq = req.clone({
                 setHeaders: {
-                    AUTHORIZATION: `Bearer ${token}`
+                    'AUTHORIZATION': `Bearer ${token}`
                 }
             });
 
-            return next.handle(req);
+            return next.handle(newReq);
         }
 
         return next.handle(req);

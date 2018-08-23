@@ -6,7 +6,7 @@ import { HttpHelper } from "../../utils/httpHelper";
 
 @Injectable()
 export class GenericService extends BaseService {
-    private _httpHelper: HttpHelper;
+    private _httpHelper: any = new HttpHelper();
 
     constructor(http: HttpClient) {
         super(http);

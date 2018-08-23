@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { GenericService } from "../core/generic.service";
+import { MsalService } from "../msal/msal.service";
 
 export interface Auth {
     userName: string;
@@ -11,11 +12,13 @@ export interface Auth {
 export class AuthService extends GenericService {
     public hash_token: string = null;
     public isAuthenticated: boolean;
+    public isOnline: boolean;
 
-    constructor(http: HttpClient) {
+    constructor(http: HttpClient, private msal: MsalService) {
         super(http);
 
         this.isAuthenticated = false;
+        this.isOnline = this.msal.isOnline();
         this._serviceUrl = this._serviceUrl + 'auth';
     }
 
