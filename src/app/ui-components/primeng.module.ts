@@ -3,11 +3,13 @@ import { CommonModule } from "@angular/common";
 import * as _ from 'lodash';
 
 import { ToolbarModule } from 'primeng/toolbar';
-import { SplitButtonModule } from 'primeng/splitbutton';
+import { MenubarModule } from 'primeng/menubar';
+import {ButtonModule} from 'primeng/button';
 
 const modules = [
     ToolbarModule,
-    SplitButtonModule
+    MenubarModule,
+    ButtonModule
 ];
 
 @NgModule({

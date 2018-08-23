@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import * as _ from 'lodash';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NotifierModule } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
 import { PrimeNgModule } from './ui-components/primeng.module';
@@ -20,7 +21,9 @@ import { COMPONENTS } from './components/index';
 
 import { MsalInterceptor } from './services/msal/msal.interceptor';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
-import { NotifierModule } from 'angular-notifier';
+
+import { notifierDefaultOptions } from './components/notifier/notifier.config';
+
 
 
 @NgModule({
@@ -32,7 +35,7 @@ import { NotifierModule } from 'angular-notifier';
     AppRoutingModule,
     PrimeNgModule,
     NgxSpinnerModule,
-    NotifierModule
+    NotifierModule.withConfig(notifierDefaultOptions)
   ],
   providers: [
     MsalGuard,
