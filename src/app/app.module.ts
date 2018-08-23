@@ -1,15 +1,12 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
 import * as _ from 'lodash';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
-
-
-import { MaterialModule } from './material/material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { PrimeNgModule } from './ui-components/primeng.module';
 
 import { MsalGuard } from './services/msal/msal.guard';
 import { MsalService } from './services/msal/msal.service';
@@ -23,6 +20,8 @@ import { COMPONENTS } from './components/index';
 
 import { MsalInterceptor } from './services/msal/msal.interceptor';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
+import { NotifierModule } from 'angular-notifier';
+
 
 @NgModule({
   declarations: _.concat(COMPONENTS, AppComponent),
@@ -31,9 +30,9 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    MaterialModule,
-    FlexLayoutModule,
-    NgxSpinnerModule
+    PrimeNgModule,
+    NgxSpinnerModule,
+    NotifierModule
   ],
   providers: [
     MsalGuard,
@@ -42,16 +41,8 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     GenericService,
     AuthService,
     AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MsalInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
