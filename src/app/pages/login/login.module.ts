@@ -5,11 +5,6 @@ import { MsalGuard } from "../../services/msal/msal.guard";
 
 const router: Routes = [
     {
-        path: 'login',
-        component: LoginComponent,
-        canActivate: [MsalGuard]
-    },
-    {
         path: '',
         component: LoginComponent,
         canActivate: [MsalGuard]
