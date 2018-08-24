@@ -14,11 +14,11 @@ export class AuthService extends GenericService {
     public isAuthenticated: boolean;
     public isOnline: boolean;
 
-    constructor(http: HttpClient, private msal: MsalService) {
+    constructor(http: HttpClient, private _msal: MsalService) {
         super(http);
 
         this.isAuthenticated = false;
-        this.isOnline = this.msal.isOnline();
+        this.isOnline = this._msal.isOnline();
         this.serviceUrl = this.serviceUrl + 'auth';
     }
 

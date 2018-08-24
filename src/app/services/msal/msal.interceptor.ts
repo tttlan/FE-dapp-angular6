@@ -7,11 +7,11 @@ import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class MsalInterceptor implements HttpInterceptor {
-    constructor(private msal: MsalService, private auth: AuthService) { }
+    constructor(private _msal: MsalService, private _auth: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (this.auth.isOnline && this.auth.isAuthenticated === false) {
-            const token = this.msal.getToken();
+        if (this._auth.isOnline && this._auth.isAuthenticated === false) {
+            const token = this._msal.getToken();
             const newReq = req.clone({
                 setHeaders: {
                     'LOGIN_TOKEN': `Bearer ${token}`

@@ -3,7 +3,7 @@ import { NotifierService } from "angular-notifier";
 
 @Injectable()
 export class NotificationCustomService {
-    constructor(private notifier: NotifierService) { }
+    constructor(private _notifier: NotifierService) { }
 
     /**
      * Show a notification
@@ -12,7 +12,7 @@ export class NotificationCustomService {
      * @param Notification message 
      */
     showNotification(type: string, message: string): void {
-        this.notifier.notify(type, message);
+        this._notifier.notify(type, message);
     }
 
     /**
@@ -21,28 +21,28 @@ export class NotificationCustomService {
      * @param Notification id 
      */
     hideNotification(id: string): void {
-        this.notifier.hide(id);
+        this._notifier.hide(id);
     }
 
     /**
      * Hide oldest notification
      */
     hideOldestNotification(): void {
-        this.notifier.hideOldest();
+        this._notifier.hideOldest();
     }
 
     /**
 	 * Hide newest notification
 	 */
     hideNewestNotification(): void {
-        this.notifier.hideNewest();
+        this._notifier.hideNewest();
     }
 
     /**
      * Hide all notification
      */
     hideAllNotifications(): void {
-        this.notifier.hideAll();
+        this._notifier.hideAll();
     }
 
     /**
@@ -53,7 +53,7 @@ export class NotificationCustomService {
 	 * @param {string} id      Notification ID
 	 */
     showSpecificNotification(type: string, message: string, id: string): void {
-        this.notifier.show({
+        this._notifier.show({
             id,
             message,
             type
@@ -66,7 +66,7 @@ export class NotificationCustomService {
      * @param Notification id 
      */
     hideSpecificNotification(id: string): void {
-        this.notifier.hide(id);
+        this._notifier.hide(id);
     }
 
 }
