@@ -4,11 +4,12 @@ import { Observable } from "rxjs";
 
 import { AuthService } from "./auth.service";
 import { LocalStorageHelper } from "../../utils/localStorageHelper";
-import { HttpHelper } from "../../utils/httpHelper";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    constructor(private _auth: AuthService, private _storage: LocalStorageHelper) { }
+    private _storage: LocalStorageHelper;
+    
+    constructor(private _auth: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (this._auth.isAuthenticated) {

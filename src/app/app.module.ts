@@ -16,7 +16,7 @@ import { MsalInterceptor } from './services/msal/msal.interceptor';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { notifierDefaultOptions } from './services/notifier/notifier.config';
 import { HandleErrorService } from './services/core/handle-error.service';
-
+import { LoadingInterceptor } from './services/core/loading.interceptor';
 import { SERVICES } from './services';
 
 @NgModule({
@@ -31,9 +31,10 @@ import { SERVICES } from './services';
     NotifierModule.withConfig(notifierDefaultOptions)
   ],
   providers: _.concat(
-    SERVICES, 
+    SERVICES,
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: ErrorHandler, useClass: HandleErrorService }
   ),
   bootstrap: [AppComponent]
