@@ -11,11 +11,11 @@ export class GenericService extends BaseService {
     constructor(http: HttpClient) {
         super(http);
 
-        this._serviceUrl = this._serviceUrl;
+        this.serviceUrl = this.serviceUrl;
     }
 
     getAll(successCallback, errorCallback) {
-        const url = this._serviceUrl;
+        const url = this.serviceUrl;
 
         this.get(url, (response) => {
             const res = this.formatItemsResponse(response);
@@ -24,7 +24,7 @@ export class GenericService extends BaseService {
     }
 
     getById(id: number, successCallback, errorCallback) {
-        const url = this._serviceUrl + '/' + id;
+        const url = this.serviceUrl + '/' + id;
 
         this.get(url, (response) => {
             const res = this.formatItemResponse(response);
@@ -33,7 +33,7 @@ export class GenericService extends BaseService {
     }
 
     query(objParam, successCallback, errorCallback) {
-        const url = this._serviceUrl + this._httpHelper.buildParams(objParam);
+        const url = this.serviceUrl + this._httpHelper.buildParams(objParam);
 
         this.get(url, (response) => {
             const res = this.formatItemsResponse(response);
@@ -51,7 +51,7 @@ export class GenericService extends BaseService {
     }
 
     updateByPost(id: number, data: any, successCallback, errorCallback) {
-        const url = this._serviceUrl + '/' + id;
+        const url = this.serviceUrl + '/' + id;
         const reqData = this.formatDataRequest(data);
 
         this.post(url, reqData, (response) => {
@@ -61,7 +61,7 @@ export class GenericService extends BaseService {
     }
 
     updateByPut(id: number, data: any, successCallback, errorCallback) {
-        const url = this._serviceUrl + '/' + id;
+        const url = this.serviceUrl + '/' + id;
         const reqData = this.formatDataRequest(data);
 
         this.put(url, reqData, (response) => {
@@ -71,13 +71,13 @@ export class GenericService extends BaseService {
     }
 
     deleteById(id: number, successCallback, errorCallback) {
-        const url = this._serviceUrl + '/' + id;
+        const url = this.serviceUrl + '/' + id;
 
         this.delete(url, successCallback, errorCallback);
     }
 
     deleteByIds(ids: number[], successCallback, errorCallback) {
-        const url = this._serviceUrl + '/' + this._httpHelper.convertArrayToString(ids);
+        const url = this.serviceUrl + '/' + this._httpHelper.convertArrayToString(ids);
 
         this.delete(url, successCallback, errorCallback);
     }

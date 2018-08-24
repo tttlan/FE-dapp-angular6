@@ -19,11 +19,11 @@ export class AuthService extends GenericService {
 
         this.isAuthenticated = false;
         this.isOnline = this.msal.isOnline();
-        this._serviceUrl = this._serviceUrl + 'auth';
+        this.serviceUrl = this.serviceUrl + 'auth';
     }
 
     login(auth: Auth) {
-        const serviceUrlLogin = this._serviceUrl + '/login';
+        const serviceUrlLogin = this.serviceUrl + '/login';
 
         this.create(serviceUrlLogin, auth, this.loginSuccess, this.loginError);
     }

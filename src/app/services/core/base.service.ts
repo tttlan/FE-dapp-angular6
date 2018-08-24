@@ -5,11 +5,11 @@ import { environment } from "../../../environments/environment";
 @Injectable()
 export class BaseService {
     private _http: HttpClient;
-    public _serviceUrl: string;
+    public serviceUrl: string;
 
     constructor(http: HttpClient) {
         this._http = http;
-        this._serviceUrl = environment.serviceUrl;
+        this.serviceUrl = environment.serviceUrl;
     }
 
     get(url, successCallback, errorCallback) {

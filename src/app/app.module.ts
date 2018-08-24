@@ -22,7 +22,8 @@ import { COMPONENTS } from './components/index';
 import { MsalInterceptor } from './services/msal/msal.interceptor';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 
-import { notifierDefaultOptions } from './components/notifier/notifier.config';
+import { notifierDefaultOptions } from './services/notifier/notifier.config';
+import { NotificationServiceCustom } from './services/notifier/notifier.service';
 
 
 
@@ -44,6 +45,7 @@ import { notifierDefaultOptions } from './components/notifier/notifier.config';
     GenericService,
     AuthService,
     AuthGuard,
+    NotificationServiceCustom,
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
