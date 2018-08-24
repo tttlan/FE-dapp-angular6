@@ -14,72 +14,72 @@ export class GenericService extends BaseService {
         this.serviceUrl = this.serviceUrl;
     }
 
-    getAll(successCallback, errorCallback) {
+    getAll(successCallback) {
         const url = this.serviceUrl;
 
         this.get(url, (response) => {
             const res = this.formatItemsResponse(response);
             successCallback(res);
-        }, errorCallback);
+        });
     }
 
-    getById(id: number, successCallback, errorCallback) {
+    getById(id: number, successCallback) {
         const url = this.serviceUrl + '/' + id;
 
         this.get(url, (response) => {
             const res = this.formatItemResponse(response);
             successCallback(res);
-        }, errorCallback);
+        });
     }
 
-    query(objParam, successCallback, errorCallback) {
+    query(objParam, successCallback) {
         const url = this.serviceUrl + this._httpHelper.buildParams(objParam);
 
         this.get(url, (response) => {
             const res = this.formatItemsResponse(response);
             successCallback(res);
-        }, errorCallback);
+        });
     }
 
-    create(url, data: any, successCallback, errorCallback) {
+    create(url, data: any, successCallback) {
         const reqData = this.formatDataRequest(data);
 
         this.post(url, reqData, (response) => {
             const res = this.formatDataResponse(response);
             successCallback(res);
-        }, errorCallback);
+        });
     }
 
-    updateByPost(id: number, data: any, successCallback, errorCallback) {
+    updateByPost(id: number, data: any, successCallback) {
         const url = this.serviceUrl + '/' + id;
         const reqData = this.formatDataRequest(data);
 
         this.post(url, reqData, (response) => {
             const res = this.formatDataResponse(response);
             successCallback(res);
-        }, errorCallback);
+        });
     }
 
-    updateByPut(id: number, data: any, successCallback, errorCallback) {
+    updateByPut(id: number, data: any, successCallback) {
         const url = this.serviceUrl + '/' + id;
         const reqData = this.formatDataRequest(data);
 
         this.put(url, reqData, (response) => {
             const res = this.formatDataResponse(response);
             successCallback(res);
-        }, errorCallback);
+        });
     }
 
-    deleteById(id: number, successCallback, errorCallback) {
+    deleteById(id: number, successCallback) {
         const url = this.serviceUrl + '/' + id;
 
-        this.delete(url, successCallback, errorCallback);
+        this.delete(url, successCallback);
     }
 
-    deleteByIds(ids: number[], successCallback, errorCallback) {
+    deleteByIds(ids: number[], successCallback) {
         const url = this.serviceUrl + '/' + this._httpHelper.convertArrayToString(ids);
 
-        this.delete(url, successCallback, errorCallback);
+        this.delete(url, successCallback);
     }
 
     formatDataRequest(data: any) {

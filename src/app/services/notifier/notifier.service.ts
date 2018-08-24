@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { NotifierService } from "angular-notifier";
 
 @Injectable()
-export class NotificationServiceCustom {
+export class NotificationCustomService {
     constructor(private notifier: NotifierService) { }
 
     /**

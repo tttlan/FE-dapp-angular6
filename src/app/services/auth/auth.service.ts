@@ -25,14 +25,10 @@ export class AuthService extends GenericService {
     login(auth: Auth) {
         const serviceUrlLogin = this.serviceUrl + '/login';
 
-        this.create(serviceUrlLogin, auth, this.loginSuccess, this.loginError);
+        this.create(serviceUrlLogin, auth, this.loginSuccess);
     }
 
     loginSuccess(data: any) {
-        console.log(data);
-    }
-
-    loginError(data: any) {
         console.log(data);
     }
 

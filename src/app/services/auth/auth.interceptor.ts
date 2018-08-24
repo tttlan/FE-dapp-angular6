@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 
 import { AuthService } from "./auth.service";
 import { LocalStorageHelper } from "../../utils/localStorageHelper";
+import { HttpHelper } from "../../utils/httpHelper";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

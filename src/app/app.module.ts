@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -9,23 +9,15 @@ import { NotifierModule } from 'angular-notifier';
 import { AppRoutingModule } from './app-routing.module';
 import { PrimeNgModule } from './ui-components/primeng.module';
 
-import { MsalGuard } from './services/msal/msal.guard';
-import { MsalService } from './services/msal/msal.service';
-import { BaseService } from './services/core/base.service';
-import { GenericService } from './services/core/generic.service';
-import { AuthService } from './services/auth/auth.service';
-import { AuthGuard } from './services/auth/auth.guard';
-
 import { AppComponent } from './app.component';
 import { COMPONENTS } from './components/index';
 
 import { MsalInterceptor } from './services/msal/msal.interceptor';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
-
 import { notifierDefaultOptions } from './services/notifier/notifier.config';
-import { NotificationServiceCustom } from './services/notifier/notifier.service';
+import { HandleErrorService } from './services/core/handle-error.service';
 
-
+import { SERVICES } from './services';
 
 @NgModule({
   declarations: _.concat(COMPONENTS, AppComponent),
@@ -38,17 +30,12 @@ import { NotificationServiceCustom } from './services/notifier/notifier.service'
     NgxSpinnerModule,
     NotifierModule.withConfig(notifierDefaultOptions)
   ],
-  providers: [
-    MsalGuard,
-    MsalService,
-    BaseService,
-    GenericService,
-    AuthService,
-    AuthGuard,
-    NotificationServiceCustom,
+  providers: _.concat(
+    SERVICES, 
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-  ],
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: ErrorHandler, useClass: HandleErrorService }
+  ),
   bootstrap: [AppComponent]
 })
 export class AppModule { }
