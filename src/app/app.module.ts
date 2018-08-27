@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -15,7 +15,6 @@ import { COMPONENTS } from './components/index';
 import { MsalInterceptor } from './services/msal/msal.interceptor';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { notifierDefaultOptions } from './services/notifier/notifier.config';
-import { HandleErrorService } from './services/core/handle-error.service';
 import { LoadingInterceptor } from './services/core/loading.interceptor';
 import { SERVICES } from './services';
 import { HandleErrorInterceptor } from './services/core/handle-error.interceptor';

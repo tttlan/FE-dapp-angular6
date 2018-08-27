@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } from "@angular/common/http";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Observable } from "rxjs";
-import { tap, finalize } from 'rxjs/operators';
-import { NotificationCustomService } from "../notifier/notifier.service";
+import { finalize } from 'rxjs/operators';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
