@@ -1,0 +1,21 @@
+<div class="stepper">
+    <div class="stepper-horizontal-container">
+        <div class="step" *ngFor="let step of forms.steps; trackBy: trackByStep; let idx = index">
+            <div class="step-heading" [ngClass]="{'active':!step.expanded}" (click)="toggleListItems(idx)">
+                <div class="circle">{{ step.step }}</div>
+                <!-- <div class="title">{{ step.name }}</div> -->
+            </div>
+            <div class="line" *ngIf="idx < forms.steps.length - 1"></div>
+
+            <div uib-collapse="!step.expanded">
+                <div class="body">
+                    <div>{{step.template}}</div>
+                    <button *ngIf="idx < forms.steps.length - 1" (click)="toggleListItems(idx + 1)" class="btn btn-sm btn-bg ripple" name="next"
+                        type="button"> Next </button>
+                    <button *ngIf="idx > 0" [ngClass]="{'btn-bg': idx == forms.steps.length}" (click)="toggleListItems(idx - 1)" class="btn btn-sm ripple"
+                        name="previous" type="button"> Previous </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

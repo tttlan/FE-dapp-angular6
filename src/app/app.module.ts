@@ -2,12 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import * as _ from 'lodash';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { NotifierModule } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
-import { PrimeNgModule } from './ui-components/primeng.module';
 
 import { MsalGuard } from './services/msal/msal.guard';
 import { MsalService } from './services/msal/msal.service';
@@ -17,25 +13,19 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/auth/auth.guard';
 
 import { AppComponent } from './app.component';
-import { COMPONENTS } from './components/index';
+import { SharedModule } from './components/index';
 
 import { MsalInterceptor } from './services/msal/msal.interceptor';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 
-import { notifierDefaultOptions } from './components/notifier/notifier.config';
-
-
-
 @NgModule({
-  declarations: _.concat(COMPONENTS, AppComponent),
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    PrimeNgModule,
-    NgxSpinnerModule,
-    NotifierModule.withConfig(notifierDefaultOptions)
+    SharedModule
   ],
   providers: [
     MsalGuard,
