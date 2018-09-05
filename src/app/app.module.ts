@@ -2,21 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import * as _ from 'lodash';
 
 import { AppRoutingModule } from './app-routing.module';
-
-import { MsalGuard } from './services/msal/msal.guard';
-import { MsalService } from './services/msal/msal.service';
-import { BaseService } from './services/core/base.service';
-import { GenericService } from './services/core/generic.service';
-import { AuthService } from './services/auth/auth.service';
-import { AuthGuard } from './services/auth/auth.guard';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './components/index';
 
 import { MsalInterceptor } from './services/msal/msal.interceptor';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
+import { LoadingInterceptor } from './services/core/loading.interceptor';
+import { SERVICES } from './services';
+import { HandleErrorInterceptor } from './services/core/handle-error.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,16 +24,13 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     AppRoutingModule,
     SharedModule
   ],
-  providers: [
-    MsalGuard,
-    MsalService,
-    BaseService,
-    GenericService,
-    AuthService,
-    AuthGuard,
+  providers: _.concat(
+    SERVICES,
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-  ],
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HandleErrorInterceptor, multi: true }
+  ),
   bootstrap: [AppComponent]
 })
 export class AppModule { }

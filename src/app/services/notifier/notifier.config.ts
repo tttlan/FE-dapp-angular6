@@ -3,7 +3,7 @@ import { NotifierOptions } from "angular-notifier";
 export const notifierDefaultOptions: NotifierOptions = {
     position: {
         horizontal: {
-            position: 'right',
+            position: 'middle',
             distance: 12
         },
         vertical: {
@@ -18,7 +18,7 @@ export const notifierDefaultOptions: NotifierOptions = {
         onClick: false,
         onMouseover: 'pauseAutoHide',
         showDismissButton: true,
-        stacking: 4
+        stacking: false
     },
     animations: {
         enabled: true,
@@ -36,7 +36,6 @@ export const notifierDefaultOptions: NotifierOptions = {
         shift: {
             speed: 300,
             easing: 'ease'
-        },
-        overlap: 150
+        }
     }
 };

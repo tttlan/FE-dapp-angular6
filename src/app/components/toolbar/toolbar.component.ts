@@ -7,12 +7,12 @@ import { AuthService, Auth } from '../../services/auth/auth.service';
     styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-    constructor(private auth: AuthService) {}
+    constructor(private _auth: AuthService) {}
 
     ngOnInit() {}
 
     get authenticated() {
-        return this.auth.isAuthenticated;
+        return this._auth.isAuthenticated;
     }
 
     login() {
@@ -21,6 +21,6 @@ export class ToolbarComponent implements OnInit {
             password: '12345'
         };
 
-        this.auth.login(data);
+        this._auth.login(data);
     }
 }

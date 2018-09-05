@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -7,15 +8,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private spinner: NgxSpinnerService) {
-
-  }
+  constructor(private _router: Router, private _spinner: NgxSpinnerService ) {}
 
   ngOnInit() {
-    this.spinner.show();
-
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 2000);
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+          this._spinner.show();
+      } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
+          this._spinner.hide();
+      }
+  });
   }
 }

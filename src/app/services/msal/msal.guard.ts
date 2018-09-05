@@ -6,13 +6,13 @@ import { AuthService } from "../auth/auth.service";
 @Injectable()
 export class MsalGuard implements CanActivate {
 
-    constructor(private msal: MsalService, private auth: AuthService) { }
+    constructor(private _msal: MsalService, private _auth: AuthService) { }
 
     canActivate() {
-        if (this.auth.isOnline && this.auth.isAuthenticated === false) {
+        if (this._auth.isOnline && this._auth.isAuthenticated === false) {
             return true;
         } else {
-            this.msal.login();
+            this._msal.login();
         }
 
         return false;

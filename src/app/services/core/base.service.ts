@@ -5,48 +5,48 @@ import { environment } from "../../../environments/environment";
 @Injectable()
 export class BaseService {
     private _http: HttpClient;
-    public _serviceUrl: string;
+    public serviceUrl: string;
 
     constructor(http: HttpClient) {
         this._http = http;
-        this._serviceUrl = environment.serviceUrl;
+        this.serviceUrl = environment.serviceUrl;
     }
 
-    get(url, successCallback, errorCallback) {
+    get(url, successCallback) {
         try {
             const result = this._http.get(url).toPromise();
 
-            return result.then(successCallback, errorCallback);
+            return result.then(successCallback);
         } catch (error) {
             throw new Error(error);
         }
     }
 
-    post(url, data, successCallback, errorCallback) {
+    post(url, data, successCallback) {
         try {
             const result = this._http.post(url, data).toPromise();
 
-            return result.then(successCallback, errorCallback);
+            return result.then(successCallback);
         } catch (error) {
             throw new Error(error);
         }
     }
 
-    put(url, data, successCallback, errorCallback) {
+    put(url, data, successCallback) {
         try {
             const result = this._http.put(url, data).toPromise();
 
-            return result.then(successCallback, errorCallback);
+            return result.then(successCallback);
         } catch (error) {
             throw new Error(error);
         }
     }
 
-    delete(url, successCallback, errorCallback) {
+    delete(url, successCallback) {
         try {
             const result = this._http.delete(url).toPromise();
 
-            return result.then(successCallback, errorCallback);
+            return result.then(successCallback);
         } catch (error) {
             throw new Error(error);
         }

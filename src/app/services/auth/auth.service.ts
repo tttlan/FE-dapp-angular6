@@ -14,25 +14,21 @@ export class AuthService extends GenericService {
     public isAuthenticated: boolean;
     public isOnline: boolean;
 
-    constructor(http: HttpClient, private msal: MsalService) {
+    constructor(http: HttpClient, private _msal: MsalService) {
         super(http);
 
         this.isAuthenticated = false;
-        this.isOnline = this.msal.isOnline();
-        this._serviceUrl = this._serviceUrl + 'auth';
+        this.isOnline = this._msal.isOnline();
+        this.serviceUrl = this.serviceUrl + 'auth';
     }
 
     login(auth: Auth) {
-        const serviceUrlLogin = this._serviceUrl + '/login';
+        const serviceUrlLogin = this.serviceUrl + '/login';
 
-        this.create(serviceUrlLogin, auth, this.loginSuccess, this.loginError);
+        this.create(serviceUrlLogin, auth, this.loginSuccess);
     }
 
     loginSuccess(data: any) {
-        console.log(data);
-    }
-
-    loginError(data: any) {
         console.log(data);
     }
 
